@@ -11,6 +11,7 @@ contract ToDoList {
 
     // equivalent to hashmap
     mapping(uint => Task) public tasks;
+    event TaskCreated(uint id, string content, bool completed);
     constructor() public {
         createTask("Check out dappuniversity.com");
     }
@@ -18,5 +19,6 @@ contract ToDoList {
     function createTask(string memory _content) public {
         taskCount++;
         tasks[taskCount] = Task(taskCount, _content, false);
+        emit TaskCreated(taskCount, _content, false);
     }
 }
